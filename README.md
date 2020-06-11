@@ -1,2 +1,2 @@
-# Mobile-App
+# Python-App
 Kivy+Python
