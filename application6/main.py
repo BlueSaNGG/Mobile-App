@@ -18,17 +18,22 @@ class LoginScreen(Screen):
     def sign_up(self):
         self.manager.transition.direction="left"
         self.manager.current="sign_up_screen"
+        self.ids.password.text=""   #清除密码
     def login(self,uname,pword):
         with open("user.json") as file:
             users = json.load(file)
         if uname in users and users[uname]['password'] == pword:      
             self.manager.transition.direction="left"
             self.manager.current="login_screen_success"
+            self.ids.login_wrong.text=""
         else:
             self.ids.login_wrong.text="Wrong username or password!"
+        self.ids.password.text=""   #清除密码
+
     def forget(self):
         self.manager.transition.direction="left"
         self.manager.current="forget_password"
+        self.ids.password.text=""  #清除密码
 
 class SignUpScreen(Screen):
     def add_user(self,uname,pword):
@@ -41,6 +46,9 @@ class SignUpScreen(Screen):
             json.dump(users,file)
         self.manager.transition.direction="left"
         self.manager.current="sign_up_screen_success"
+        self.ids.username.text=""  #清除密码
+        self.ids.password.text=""  #清除密码
+
     def back(self):
         self.manager.transition.direction="right"
         self.manager.current="login_screen"
@@ -94,6 +102,10 @@ class FindPassword(Screen):
                 json.dump(users,file)
             self.manager.transition.direction="right"
             self.manager.current="login_screen"
+            self.ids.board.text="Change your password"
+            self.ids.username.text=""  #清除密码
+        self.ids.password.text=""  #清除密码
+        
     def back(self):
         self.manager.transition.direction="right"
         self.manager.current="login_screen"
