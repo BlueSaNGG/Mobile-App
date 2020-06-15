@@ -1,3 +1,3 @@
 # Python-App
-Kivy+Python
-built an Android APP
+Kivy+Python  
+built an Android APP  
